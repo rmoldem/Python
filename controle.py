@@ -1,5 +1,4 @@
-from PyQt5 import  QtWidgets
-# from PyQt5 import uic, QtWidgets  # ler  o arquivo ui e o qt para montar os elementos na tela
+from PyQt5 import uic, QtWidgets  # ler  o arquivo ui e o qt para montar os elementos na tela
 import sqlite3   # para trabalhar com sqlite
 
 from reportlab.pdfgen import canvas  # para gerar PDF
