@@ -1,8 +1,10 @@
 from PyQt5 import uic, QtWidgets  # ler  o arquivo ui e o qt para montar os elementos na tela
 import sqlite3   # para trabalhar com sqlite
-
+import banco
 from reportlab.pdfgen import canvas  # para gerar PDF
 from reportlab.lib.pagesizes import A4  # importar o tamanho da folha ex. A4
+
+
 
 def botao_enviar():
     # o que for digitado no text box
@@ -42,12 +44,13 @@ def botao_enviar():
 
 def botao_listar():
     listar.show()  # chama a segunda tela ( listar_dados)
+
     try:
         conexao = sqlite3.connect("novo_banco.db")
         cursor = conexao.cursor()
         cursor.execute("SELECT * FROM produtos")
         lidos = cursor.fetchall()
-        #print(lidos[0][0])
+
 
         listar.tableWidget.setRowCount(len(lidos))  # exibe a quantidade de linhas contidas em lidos ( tableWidget é o nome do componente )
         listar.tableWidget.setColumnCount(5)  # exibe quantidade de colunas do banco
@@ -59,7 +62,7 @@ def botao_listar():
         conexao.commit()
         conexao.close()
     except ValueError:
-        print("Erro ao acessar banco de dados "+ValueError)
+       print("Erro ao acessar banco de dados "+ValueError)
 
 def botao_pdf():
     try:
