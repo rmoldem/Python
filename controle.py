@@ -103,7 +103,7 @@ def botao_excluir():
         cursor.execute("SELECT ID FROM produtos")
         lidos = cursor.fetchall() # salva todos os ids do banco na varivel dados lidos
         valor_id = lidos[linha][0] # refina a exibição  de [(1,), (2,), (3,)] para 1  omitindo o resto
-        #print(valor_id)
+
         cursor.execute("DELETE FROM produtos WHERE ID="+str(valor_id))  # precisa do str porque só aceita string no comando
         conexao.commit()
         conexao.close()
