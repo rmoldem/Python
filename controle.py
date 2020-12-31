@@ -47,13 +47,14 @@ def botao_listar():
         cursor = conexao.cursor()
         cursor.execute("SELECT * FROM produtos")
         lidos = cursor.fetchall()
+        #print(lidos[0][0])
 
         listar.tableWidget.setRowCount(len(lidos))  # exibe a quantidade de linhas contidas em lidos ( tableWidget é o nome do componente )
-        listar.tableWidget.setColumnCount(4)  # exibe quantidade de colunas do banco
+        listar.tableWidget.setColumnCount(5)  # exibe quantidade de colunas do banco
 
         for i in range(0, len(lidos)): # le a matriz
-            for j in range(0,4):
-                listar.tableWidget.setItem(i,j,QtWidgets.QTableWidgetItem(lidos[i][j])) # percorre a matriz e preenche o tableWidget com os dados do banco
+            for j in range(0, 5):
+               listar.tableWidget.setItem(i, j, QtWidgets.QTableWidgetItem(str(lidos[i][j]))) # percorre a matriz e preenche o tableWidget com os dados do banco , tem que ter o str pq só aceita string para exibir
 
         conexao.commit()
         conexao.close()
@@ -99,12 +100,13 @@ def botao_excluir():
     try:
         conexao = sqlite3.connect("novo_banco.db")
         cursor = conexao.cursor()
-        cursor.execute("SELECT codigo FROM produtos")
-        lidos = cursor.fetchall()
-        valor_id = lidos[linha][0]
-        print("Registro :",valor_id)
-        print("lidos: ",lidos)
-        cursor.execute("DELETE FROM produtos WHERE codigo="+valor_id)
+        cursor.execute("SELECT ID FROM produtos")
+        lidos = cursor.fetchall() # salva todos os ids do banco na varivel dados lidos
+        valor_id = lidos[linha][0] # refina a exibição  de [(1,), (2,), (3,)] para 1  omitindo o resto
+        #print(valor_id)
+        cursor.execute("DELETE FROM produtos WHERE ID="+str(valor_id))  # precisa do str porque só aceita string no comando
+        conexao.commit()
+        conexao.close()
 
     except ValueError:
         print("Erro ao acessar banco de dados "+ValueError)

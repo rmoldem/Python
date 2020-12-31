@@ -41,7 +41,7 @@
       <x>10</x>
       <y>40</y>
       <width>491</width>
-      <height>371</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="font">
@@ -54,6 +54,18 @@
     <property name="styleSheet">
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
+    <column>
+     <property name="text">
+      <string>ID</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>13</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+    </column>
     <column>
      <property name="text">
       <string>CODIGO</string>
